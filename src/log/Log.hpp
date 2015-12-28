@@ -15,7 +15,7 @@ extern EXPORT tm g_localTime;
 
 std::string FormatOutputString(const char* Prefix, const char* Description, bool useTimeStamp);
 
-class EXPORT oLog : public Singleton< oLog > {
+class EXPORT oLog : public Singleton<oLog> {
 public:
 	//log level 0
 	void outString(const char* str, ...);

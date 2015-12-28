@@ -1,7 +1,6 @@
+#include "Common.h"
 #ifndef SINGLETON_HPP
 #define SINGLETON_HPP
-
-#include "Common.h"
 
 /// Should be placed in the appropriate .cpp file somewhere
 #define initialiseSingleton( type ) \

@@ -135,6 +135,7 @@ typedef uint8_t uint8;
 #include <cstdlib>
 #include <cctype>
 #include <ctime>
+#include <cstdarg>
 
 using std::string;
 
@@ -165,6 +166,12 @@ using std::string;
 #define STRCASECMP stricmp
 #else
 #define STRCASECMP strcasecmp
+#endif
+
+#if PLATFORM == PLATFORM_WIN32
+#define sleep(a) Sleep(a * 1000)
+#else
+#include <unistd.h>
 #endif
 
 #if COMPILER == COMPILER_MICROSOFT
@@ -199,6 +206,8 @@ using std::string;
 #include "threading/AtomicBoolean.hpp"
 
 #include "ConditionVariable.hpp"
+
+#include "Array.hpp"
 
 //Note past here is a bunch of helper functions seemingly unrealted from Threading.
 namespace MTLib {

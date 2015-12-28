@@ -1,5 +1,5 @@
 CC = g++
-MODULES= Config.o MapFile.o MapFileEntry.o TextFile.o Log.o AtomicBoolean.o AtomicCounter.o AtomicFloat.o AtomicULong.o Guard.o LockedQueue.o Mutex.o Queue.o RWLock.o ThreadPool.o ThreadWrapper.o Array.o ConditionVariable.o PrintStackTrace.o StackTrace.o Singleton.o
+MODULES= Config.o MapFile.o MapFileEntry.o TextFile.o Log.o AtomicBoolean.o AtomicCounter.o AtomicFloat.o AtomicULong.o Mutex.o ThreadPool.o ThreadWrapper.o ConditionVariable.o PrintStackTrace.o StackTrace.o
 OBJECTS=
 RCLOBJECTS= src/compat/pstdint.h src/file/config/Config.cpp src/file/config/Config.hpp src/file/config/ConfigEnv.h src/file/MapFile.cpp src/file/MapFile.hpp src/file/MapFileEntry.cpp src/file/MapFileEntry.hpp src/file/TextFile.cpp src/file/TextFile.hpp src/log/Log.hpp src/log/Log.cpp src/threading/AtomicBoolean.cpp src/threading/AtomicBoolean.hpp src/threading/AtomicCounter.cpp src/threading/AtomicCounter.hpp src/threading/AtomicFloat.cpp src/threading/AtomicFloat.hpp src/threading/AtomicULong.cpp src/threading/AtomicULong.hpp src/threading/Guard.hpp src/threading/LockedQueue.hpp src/threading/Mutex.cpp src/threading/Mutex.hpp src/threading/Queue.hpp src/threading/RWLock.hpp src/threading/Threading.h src/threading/ThreadPool.cpp src/threading/ThreadPool.hpp src/threading/ThreadStarter.hpp src/threading/ThreadWrapper.cpp src/threading/ThreadWrapper.hpp src/Array.hpp src/Common.h src/ConditionVariable.cpp src/ConditionVariable.hpp src/Errors.h src/PrintStackTrace.cpp src/PrintStackTrace.h src/Singleton.hpp src/StackTrace.cpp src/StackTrace.hpp
 LDFLAGS = -Wl,-rpath,/usr/lib
@@ -9,9 +9,6 @@ all: MTLib.so
 
 MTLib.so: $(MODULES)
 	$(CC) -shared $(MODULES) -o MTLib.so
-
-Singleton.o: $(RCLOBJECTS)
-	$(CC) -fpic -c src/Singleton.hpp -o Singleton.o
 
 Config.o: $(RCLOBJECTS)
 	$(CC) -fpic -c src/file/config/Config.cpp -o Config.o
@@ -43,26 +40,11 @@ AtomicULong.o: $(RCLOBJECTS)
 Mutex.o: $(RCLOBJECTS)
 	$(CC) -fpic -c src/threading/Mutex.cpp -o Mutex.o
 
-Guard.o: $(RCLOBJECTS)
-	$(CC) -fpic -c src/threading/Guard.hpp -o Guard.o
-
-LockedQueue.o: $(RCLOBJECTS)
-	$(CC) -fpic -c src/threading/LockedQueue.hpp -o LockedQueue.o
-
-Queue.o: $(RCLOBJECTS)
-	$(CC) -fpic -c src/threading/Queue.hpp -o Queue.o
-
-RWLock.o: $(RCLOBJECTS)
-	$(CC) -fpic -c src/threading/RWLock.hpp -o RWLock.o
-
 ThreadPool.o: $(RCLOBJECTS)
 	$(CC) -fpic -c src/threading/ThreadPool.cpp -o ThreadPool.o
 
 ThreadWrapper.o: $(RCLOBJECTS)
 	$(CC) -fpic -c src/threading/ThreadWrapper.cpp -o ThreadWrapper.o
-
-Array.o: $(RCLOBJECTS)
-	$(CC) -fpic -c src/Array.hpp -o Array.o
 
 ConditionVariable.o: $(RCLOBJECTS)
 	$(CC) -fpic -c src/ConditionVariable.cpp -o ConditionVariable.o
