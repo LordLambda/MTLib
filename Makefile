@@ -8,7 +8,7 @@ LIBS = -L/usr/local/lib -lReadToueiConfig
 all: MTLib.so
 
 MTLib.so: $(MODULES)
-	$(CC) -shared $(MODULES) -o MTLib.so
+	$(CC) -pthread -shared $(MODULES) -o libMTLib.so
 
 Config.o: $(RCLOBJECTS)
 	$(CC) -fpic -c src/file/config/Config.cpp -o Config.o
